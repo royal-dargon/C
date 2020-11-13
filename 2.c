@@ -1,17 +1,28 @@
-#include <stdio.h>
+#include<stdio.h>
 int main()
 {
-       	int retry;
- do {
- int no;
- printf("请输入一个整数:");
-		 scanf("%d",&no);
-		 if (no % 2)
-		 puts("这个数是奇数。");
-		 else
-		 puts("这个数是偶数");
-		 printf("要重复一次吗？【yes....0/no...9】:");
-		 scanf("%d",&retry);
-		 } while (retry==0);
-		 return 0;
-		 }
+    double wei,sum;
+    printf("�������ʼĵ�������");
+    scanf("%lf",&wei);
+    if(wei >30 || wei <= 0)
+    {
+        printf("fail\n");
+    }
+    else
+    {
+        if (wei<=10)
+        {
+            sum = wei*0.8+0.2;
+        }
+        else if (wei <= 20)
+        {
+            sum =wei*0.75+0.2;
+        }
+        else
+        {
+            sum =wei*0.7+0.2;
+        }
+        printf("%.2f",sum);
+    }
+    return 0;
+}

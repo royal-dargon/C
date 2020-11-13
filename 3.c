@@ -1,16 +1,66 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node{
+ int Val;
+ struct node* Prev;
+ struct node* Next;
+}listNode;
+
+listNode* receive(listNode* ptr,int n){
+    int i;
+ for ( i=0;i<n;i++){
+ listNode* node=(listNode*)malloc(sizeof(listNode));
+ scanf("%d", &node->Val);
+ node->Next = ptr;
+ node->Prev = NULL;
+ if (ptr!=NULL) ptr->Prev = node;
+ ptr = node;
+ }
+ return ptr;
+} //µ÷ÓÃ
+
+void test(listNode *ptr,int n)
+{
+    int flag = 1, count = 1;
+    listNode *head = ptr;
+    while (count != n )
+    {
+        ptr = ptr->Next;
+        count++;
+    }  //ÏÈÈ¡µ½Á´±íµÄÄ©¶Ë
+    count = 0;
+    while (count != n-1 )//Ò»¹²n´ÎÑ­»·
+    {
+        listNode*before = ptr;
+        listNode*behind = head;
+        if ((before -> Val) != (behind ->Val)) //ÅĞ¶Ï 
+        {
+         flag = 2;//·¢ÏÖ²»Âú×ã¸Ä±äflagµÄÖµ
+
+        }
+        before = before->Prev;
+        behind = behind->Next;
+        count ++;
+    }
+    if (flag == 1)
+    {
+        printf("true\n");
+    }
+    else
+    {
+        printf("false\n");
+    }
+
+
+}
+
 int main()
-{ 
-	int hand;
-	do {
-		printf("è¯·é€‰æ‹©å‡ºä»€æ‹³ã€0..çŸ³å¤´/1...å‰ªåˆ€/2...å¸ƒã€‘:");
-		scanf("%d",&hand);
-	}while (hand<0||hand>2);
-	printf("ä½ é€‰æ‹©äº†");
-	switch (hand){
-		case 0:printf("çŸ³å¤´ã€‚\n"); break;
-		case 1:printf("å‰ªåˆ€ã€‚\n"); break;
-		case 2:printf("å¸ƒã€‚\n");break;
-		 }
-      return 0;
-}      
+{
+    int n;
+    scanf("%d",&n);
+    listNode*ptr = NULL;
+    ptr = receive(ptr,n);
+    test(ptr,n);
+    return 0;
+}
